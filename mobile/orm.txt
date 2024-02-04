@@ -1,0 +1,56 @@
+class Mobiles(models.Model):
+    name=models.CharField(max_length=200,unique=True)
+    price=models.PositiveIntegerField()
+    brand=models.CharField(max_length=200)
+    specs=models.CharField(max_length=200)
+    display=models.CharField(max_length=200)
+
+    orm queries:
+
+    modelname.objects.create(Fieldname=value,....)
+
+
+    from mobile.models import Mobiles
+    Mobiles.objects.create(name="samsung galaxy S23",price=1000000,brand="samsung",specs="12gb ram",display="black")
+
+    =====orm query for fetching all records==========
+
+>Models.objects.all()
+
+qs=Mobiles.objects.all()
+
+===orm query for selecting a specific object====
+
+qs=ModelName.objects.get(id=2)
+
+====orm query for filtering objects=====
+
+qs=Mobiles.objects.filter(name="samsung")
+
+qs=Mobiles.object.filter(price__lte=50000)
+
+> __gt
+> __gte
+
+===orm query for excluding a specific object====
+qs=Mobiles.objects.exclude(brand="samsung")
+
+===orm query for deleting an object====
+
+Mobiles.objects.filter(id=2).delete()
+
+==orm query for updating an object====
+
+Mobiles.objects.filter(id=1).update(price=95000,specs="128gb")
+
+====orm query for sorting objects====
+
+Mobiles.objects.all(),order_by("price")  #(ascending)
+Mobiles.objects.all(),order_by("-price") #(decending)
+
+qs=Mobiles.objects.all().values_list("brand",flat=True)
+qs=Mobiles.objects.all().values("brand")
+
+
+
+
